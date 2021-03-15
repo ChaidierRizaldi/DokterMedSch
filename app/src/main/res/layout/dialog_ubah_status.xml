@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/bg_dialog"
+    android:orientation="vertical"
+    android:layout_margin="10dp"
+    android:padding="10dp">
+
+    <TextView
+        android:id="@+id/tv_dialog_status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Status"
+        android:textColor="@color/black"
+        android:fontFamily="@font/sans"
+        android:textSize="18sp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="20dp"/>
+    
+    <Spinner
+        android:id="@+id/spinner_status"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/bg_field"
+        android:clickable="true"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:text="Keterangan"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="40dp"
+        android:fontFamily="@font/sans"
+        android:textColor="@color/black"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="40dp"
+        android:padding="8dp"
+        android:gravity="top"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/bg_field"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal"
+        android:gravity="center_horizontal"
+        android:layout_marginBottom="20dp">
+        <Button
+            android:id="@+id/btn_submit_status"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button_bg"
+            android:layout_marginEnd="10dp"
+            android:textAllCaps="false"
+            android:text="Submit"/>
+        <Button
+            android:id="@+id/btn_batal_status"
+            android:layout_width="150dp"
+            android:layout_marginStart="10dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button_bg"
+            android:textAllCaps="false"
+            android:text="Batal"/>
+    </LinearLayout>
+</LinearLayout>

@@ -13,7 +13,9 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 
+import com.example.dokterandroidmedsch.ui.Dashboard;
 import com.example.dokterandroidmedsch.ui.login.LoginActivity;
+import com.example.dokterandroidmedsch.utils.SharedPreferences;
 
 public class SplashActivity extends AppCompatActivity {
 
@@ -22,6 +24,7 @@ public class SplashActivity extends AppCompatActivity {
     //Variables
     Animation topAnim, bottomAnim;
     ImageView image,logo;
+    SharedPreferences sp_helper;
 
 
     @Override
@@ -39,13 +42,13 @@ public class SplashActivity extends AppCompatActivity {
         image = findViewById(R.id.imageView);
         logo = findViewById(R.id.logoView);
 
+        sp_helper = new SharedPreferences(this);
 
         image.setAnimation(bottomAnim);
         logo.setAnimation(topAnim);
 
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
+        new Handler().postDelayed(() -> {
+            if (!sp_helper.checkLogin()){
                 Intent intent = new Intent( SplashActivity.this, LoginActivity.class);
 
                 Pair[] pairs = new Pair[2];
@@ -54,11 +57,15 @@ public class SplashActivity extends AppCompatActivity {
 
                 ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(SplashActivity.this,pairs);
                 startActivity(intent,options.toBundle());
-
+                finish();
+            }else {
+                Intent intent = new Intent(SplashActivity.this, Dashboard.class);
+                startActivity(intent);
+                finish();
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             }
+
         },SPLASH_SCREEN);
-
-
     }
 
 

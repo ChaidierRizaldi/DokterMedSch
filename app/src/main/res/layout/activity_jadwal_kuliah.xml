@@ -26,20 +26,17 @@
             app:layout_constraintTop_toTopOf="parent"
             android:background="@android:color/transparent"
             android:src="@drawable/ic_baseline_keyboard_backspace_40"/>
-
-        <TextView
-            android:id="@+id/tv_blok_jadwal"
-            android:layout_width="wrap_content"
+        
+        <Spinner
+            android:id="@+id/spinner_blok"
+            android:layout_width="214dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="Blok Masalah Pada Dewasa II 3.5"
-            android:textSize="15sp"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.25"
-            app:layout_constraintStart_toEndOf="@id/btn_back_jadwal"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"/>
 
         <CalendarView
+            android:id="@+id/calendar_view"
             android:layout_width="318dp"
             android:layout_height="300dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -51,8 +48,8 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_jadwal_kuliah"
-        android:layout_width="415dp"
-        android:layout_height="231dp"
+        android:layout_width="match_parent"
+        android:layout_height="210dp"
         android:layout_marginTop="20dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/cl_jadwal"

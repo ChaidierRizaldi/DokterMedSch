@@ -22,7 +22,7 @@
         android:layout_gravity="center"
         android:layout_marginTop="70dp"
         android:background="#0000ffff"
-        android:src="@drawable/buttonjadwal" />
+        android:src="@drawable/btn_jadwal" />
 
     <ImageButton
         android:id="@+id/btn_daftar_dokter"
@@ -32,7 +32,7 @@
         android:layout_marginTop="10dp"
         android:background="#0000ffff"
         android:clickable="true"
-        android:src="@drawable/buttondaftardokter" />
+        android:src="@drawable/btn_konfirmasi" />
 
 
     <ImageButton
@@ -43,6 +43,6 @@
         android:layout_marginTop="10dp"
         android:background="#0000ffff"
         android:clickable="true"
-        android:src="@drawable/buttonkeluar" />
+        android:src="@drawable/btn_keluar" />
 
 </LinearLayout>

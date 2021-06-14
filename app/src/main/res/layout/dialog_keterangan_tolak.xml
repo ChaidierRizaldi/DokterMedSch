@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/bg_dialog"
+    android:background="@drawable/dialog_box"
     android:layout_margin="10dp"
     android:padding="10dp"
     android:orientation="vertical">
@@ -17,6 +17,7 @@
         android:textColor="@color/black"/>
 
     <EditText
+        android:id="@+id/et_note_konfirmasi"
         android:layout_width="match_parent"
         android:layout_height="400dp"
         android:layout_marginStart="40dp"
@@ -34,21 +35,24 @@
         android:gravity="center_horizontal"
         android:layout_marginBottom="20dp">
         <Button
-            android:id="@+id/btn_konfirmasi_tolak"
+            android:id="@+id/btn_batal_tolak"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
+            android:textColor="@color/white"
             android:background="@drawable/button_bg"
-            android:layout_marginEnd="10dp"
             android:textAllCaps="false"
-            android:text="Submit"/>
+            android:text="Batal"/>
         <Button
-            android:id="@+id/btn_batal_tolak"
+            android:id="@+id/btn_konfirmasi_tolak"
             android:layout_width="150dp"
             android:layout_marginStart="10dp"
             android:layout_height="wrap_content"
             android:background="@drawable/button_bg"
+            android:layout_marginEnd="10dp"
             android:textAllCaps="false"
-            android:text="Batal"/>
+            android:textColor="@color/white"
+            android:text="Submit"/>
+
     </LinearLayout>
 
 </LinearLayout>

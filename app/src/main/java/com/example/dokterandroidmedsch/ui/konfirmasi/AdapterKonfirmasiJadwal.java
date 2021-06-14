@@ -1,6 +1,5 @@
 package com.example.dokterandroidmedsch.ui.konfirmasi;
 
-import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,23 +10,29 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.dokterandroidmedsch.R;
-import com.example.dokterandroidmedsch.model.ModelKonfirmasiJadwal;
+import com.example.dokterandroidmedsch.model.get.JadwalDokter;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class AdapterKonfirmasiJadwal extends RecyclerView.Adapter<AdapterKonfirmasiJadwal.KonfirmasiViewHolder> {
     private KonfirmasiClickListener clickListener;
-    private ArrayList<ModelKonfirmasiJadwal> list_jadwal;
+    private List<JadwalDokter> list_jadwal;
 
-    public AdapterKonfirmasiJadwal(ArrayList<ModelKonfirmasiJadwal> list_jadwal) {
+    public AdapterKonfirmasiJadwal(List<JadwalDokter> list_jadwal) {
         this.list_jadwal = list_jadwal;
+//        this.clickListener = listener_callback;
+    }
+
+    public void setData (List<JadwalDokter> list_jadwal){
         this.list_jadwal.clear();
         this.list_jadwal.addAll(list_jadwal);
+        notifyDataSetChanged();
     }
 
-    public void onClickListener(KonfirmasiClickListener listenerCallback){
+    public void setOnClickListener(KonfirmasiClickListener listenerCallback){
         this.clickListener = listenerCallback;
     }
+
     @NonNull
     @Override
     public KonfirmasiViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -37,18 +42,14 @@ public class AdapterKonfirmasiJadwal extends RecyclerView.Adapter<AdapterKonfirm
 
     @Override
     public void onBindViewHolder(@NonNull KonfirmasiViewHolder holder, int position) {
-        holder.tv_hari.setText(list_jadwal.get(position).getHariKuliah());
-        holder.tv_jam.setText(list_jadwal.get(position).getJamKuliah());
+        holder.tv_hari.setText(list_jadwal.get(position).getTanggal());
+        holder.tv_jam.setText(list_jadwal.get(position).getJam());
         holder.tv_matkul.setText(list_jadwal.get(position).getMataKuliah());
-        holder.tv_pengajar.setText(list_jadwal.get(position).getPengajar());
         holder.tv_ruangKelas.setText(list_jadwal.get(position).getRuangKelas());
-        holder.tv_status.setText(list_jadwal.get(position).getStatus());
-//        holder.btn_konfirmasi.setOnClickListener(v -> {
-//            clickListener.onKonfrimasiClick(v, position);
-//        });
-//        holder.btn_tolak.setOnClickListener(v->{
-//            clickListener.onTolakClick(v, position);
-//        });
+        if (list_jadwal.get(position).getStatus() == 0){
+            holder.tv_status.setText("PENDING");
+        }
+        holder.tv_nama_blok.setText(list_jadwal.get(position).getNamaBlok());
     }
 
     @Override
@@ -57,9 +58,9 @@ public class AdapterKonfirmasiJadwal extends RecyclerView.Adapter<AdapterKonfirm
     }
 
     public class KonfirmasiViewHolder extends RecyclerView.ViewHolder {
-        TextView tv_hari, tv_jam, tv_matkul, tv_pengajar, tv_ruangKelas, tv_status;
+        TextView tv_hari, tv_jam, tv_matkul, tv_nama_blok, tv_ruangKelas, tv_status;
         Button btn_konfirmasi, btn_tolak;
-        KonfirmasiClickListener clickListener;
+        JadwalDokter jadwal;
 
         public KonfirmasiViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -67,47 +68,24 @@ public class AdapterKonfirmasiJadwal extends RecyclerView.Adapter<AdapterKonfirm
             tv_hari = itemView.findViewById(R.id.tv_date);
             tv_jam = itemView.findViewById(R.id.tv_jam_dosen);
             tv_matkul = itemView.findViewById(R.id.tv_matkul_dosen);
-            tv_pengajar = itemView.findViewById(R.id.tv_pengajar_dosen);
             tv_ruangKelas = itemView.findViewById(R.id.tv_ruang_kelas_dosen);
             btn_konfirmasi = itemView.findViewById(R.id.btn_konfirmasi_jadwal);
             btn_tolak = itemView.findViewById(R.id.btn_tolak_jadwal);
             tv_status = itemView.findViewById(R.id.tv_status_dosen);
-
-            btn_konfirmasi.setOnClickListener(v -> {
-                clickListener.onKonfrimasiClick(itemView, getAdapterPosition());
-            });
+            tv_nama_blok = itemView.findViewById(R.id.tv_nama_blok);
 
             btn_tolak.setOnClickListener(v -> {
-                clickListener.onTolakClick(itemView, getAdapterPosition());
+                clickListener.onTolakClick(jadwal, getAdapterPosition());
             });
-//            this.clickListener = clickListener;
-//
-//            btn_konfirmasi.setOnClickListener(v -> clickListener.onKonfrimasiClick(getAdapterPosition()));
-//            btn_tolak.setOnClickListener(v -> clickListener.onTolakClick(getAdapterPosition()));
+            btn_konfirmasi.setOnClickListener(v -> {
+                clickListener.onKonfrimasiClick(jadwal, getAdapterPosition());
+            });
 
         }
-
-//        @Override
-//        public void onClick(View v) {
-//            clickListener.onKonfrimasiClick(getAdapterPosition());
-//            clickListener.onTolakClick(getAdapterPosition());
-//        }
-
-//        @Override
-//        public void onKonfrimasiClick(Integer position) {
-//            clickListener.onKonfrimasiClick(getAdapterPosition());
-//            tv_status.setText("Siap Belajar");
-//
-//        }
-//
-//        @Override
-//        public void onTolakClick(Integer position) {
-//            clickListener.onTolakClick(getAdapterPosition());
-//        }
     }
 
     public interface KonfirmasiClickListener {
-        void onKonfrimasiClick(View v, Integer position);
-        void onTolakClick(View v, Integer position);
+        void onKonfrimasiClick(JadwalDokter confirmJadwal, int position);
+        void onTolakClick(JadwalDokter rejectJadwal, int position);
     }
 }

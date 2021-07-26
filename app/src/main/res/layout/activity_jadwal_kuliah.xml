@@ -5,12 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.jadwal.JadwalKuliah"
-    android:background="@color/blue_medsch2">
+    android:background="@drawable/bg_jadwalkuliah">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/cl_jadwal"
         android:layout_width="412dp"
-        android:layout_height="379dp"
+        android:layout_height="350dp"
         android:background="@drawable/view_bg_2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -45,23 +45,72 @@
             app:layout_constraintEnd_toEndOf="parent"
             android:dateTextAppearance="@style/SmallerCalendarText"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_msg_no_schedule"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        app:cardCornerRadius="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_margin="50dp"
+        android:elevation="6dp"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@id/cl_jadwal">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#B4DDFF">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:textColor="@color/black"
+                android:fontFamily="@font/sans"
+                android:textSize="18sp"
+                android:text="Tidak Ada Jadwal Pada Tanggal Ini"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_msg_pending_schedule"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        app:cardCornerRadius="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_margin="50dp"
+        android:elevation="6dp"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@id/cl_jadwal">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#B4DDFF">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:textColor="@color/black"
+                android:fontFamily="@font/sans"
+                android:gravity="center"
+                android:textSize="18sp"
+                android:text="Jadwal Pada Tanggal Ini Belum Dikonfirmasi"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_jadwal_kuliah"
         android:layout_width="match_parent"
-        android:layout_height="210dp"
-        android:layout_marginTop="20dp"
+        android:layout_height="260dp"
+        android:layout_marginTop="4dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/cl_jadwal"
         tools:listitem="@layout/item_rv_jadwal" />
 
-    <ImageView
-        android:layout_width="420dp"
-        android:layout_height="134dp"
-        android:src="@drawable/imgjadwal_kuliahx"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.555"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rv_jadwal_kuliah" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

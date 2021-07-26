@@ -1,5 +1,6 @@
 package com.example.dokterandroidmedsch.utils;
 
+import com.example.dokterandroidmedsch.model.get.DataBlok;
 import com.example.dokterandroidmedsch.model.get.JadwalByTanggal;
 import com.example.dokterandroidmedsch.model.get.JadwalDokter;
 import com.example.dokterandroidmedsch.model.get.ListBlok;
@@ -15,6 +16,7 @@ import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
+import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 public interface Endpoints {
@@ -29,6 +31,9 @@ public interface Endpoints {
 
     @GET("blok/getByPengajarId")
     Call<List<ListBlok>> getBlok(@Query("idPengajar")int id);
+
+    @GET("blok/getById/{id_blok}")
+    Call<DataBlok> getDataBlok(@Path("id_blok") int id_blok);
 
     @GET("jadwal/dokter/getByTanggal")
     Call<List<JadwalByTanggal>> getJadwalByTanggal(@Query("idDokter")int id_dokter, @Query("idBlok")int id_blok, @Query("tanggal")String tanggal);

@@ -10,8 +10,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.example.dokterandroidmedsch.R;
@@ -75,39 +73,34 @@ public class KonfirmasiJadwal extends AppCompatActivity {
                     Log.d("Jadwal", response.body().toString());
                     List<JadwalDokter> jadwal = response.body();
 
+                    binding.rvJadwalDokter.setVisibility(View.VISIBLE);
+                    binding.tvTidakAdaJadwal.setVisibility(View.GONE);
+
                     jadwal.forEach(jadwalDokter -> {
                         int tolak_jadwal = 2;
                         int konfirmasi_jadwal = 1;
 
                         if (jadwalDokter.getStatus() == 0){
-                            binding.rvJadwalDokter.setVisibility(View.VISIBLE);
-                            binding.tvTidakAdaJadwal.setVisibility(View.GONE);
+
                             adapter.setData(jadwal);
                             binding.rvJadwalDokter.setAdapter(adapter);
 
                             adapter.setOnClickListener(new AdapterKonfirmasiJadwal.KonfirmasiClickListener() {
                                 @Override
                                 public void onKonfrimasiClick(JadwalDokter confirmJadwal, int position) {
-                                    ConfirmJadwal(jadwalDokter.getIdJadwal(), konfirmasi_jadwal);
-                                    jadwal.remove(position);
-                                    adapter.notifyItemRemoved(position);
-                                    Log.d("ID Jadwal", String.valueOf(jadwalDokter.getIdJadwal()));
-                                    Log.d("POSITION", String.valueOf(position));
+                                    ConfirmJadwal(confirmJadwal.getIdJadwal(), konfirmasi_jadwal);
                                 }
 
                                 @Override
                                 public void onTolakClick(JadwalDokter rejectJadwal, int position) {
-                                    OpenDialog(jadwalDokter.getIdJadwal(), tolak_jadwal);
-                                    jadwal.remove(position);
-                                    adapter.notifyItemRemoved(position);
+                                    OpenDialog(rejectJadwal.getIdJadwal(), tolak_jadwal);
                                 }
                             });
                         }
                     });
-                    if (response.body().isEmpty()){
-                        Log.d("Data Jadwal", "JADWAL KOSONG");
-                    }
                 }else {
+                    binding.rvJadwalDokter.setVisibility(View.GONE);
+                    binding.tvTidakAdaJadwal.setVisibility(View.VISIBLE);
                     Log.e("RESPONSE NOT SUCCES", "GAGAL DAPAT DATA");
                 }
             }
@@ -128,11 +121,8 @@ public class KonfirmasiJadwal extends AppCompatActivity {
         Button btn_batal = dialog_konfirmasi_jadwal.findViewById(R.id.btn_batal_tolak);
         TextView note_ubah_jadwal  = dialog_konfirmasi_jadwal.findViewById(R.id.et_note_konfirmasi);
 
-
         dialog_konfirmasi_jadwal.create();
         dialog_konfirmasi_jadwal.show();
-
-
 
         btn_konfirmasi.setOnClickListener(v -> {
             String note = note_ubah_jadwal.getText().toString();

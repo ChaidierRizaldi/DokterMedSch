@@ -1,7 +1,4 @@
 <resources>
-    <string name="app_name">Medsch Versi Dokter</string>
+    <string name="app_name"></string>
 
-    <style name="SmallerCalendarText" parent="@android:style/TextAppearance.Small">
-        <item name="android:textSize">12dp</item>
-    </style>
 </resources>

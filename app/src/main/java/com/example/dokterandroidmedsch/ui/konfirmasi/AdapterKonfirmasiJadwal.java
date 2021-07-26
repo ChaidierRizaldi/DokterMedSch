@@ -24,8 +24,7 @@ public class AdapterKonfirmasiJadwal extends RecyclerView.Adapter<AdapterKonfirm
     }
 
     public void setData (List<JadwalDokter> list_jadwal){
-        this.list_jadwal.clear();
-        this.list_jadwal.addAll(list_jadwal);
+        this.list_jadwal = list_jadwal;
         notifyDataSetChanged();
     }
 
@@ -40,16 +39,35 @@ public class AdapterKonfirmasiJadwal extends RecyclerView.Adapter<AdapterKonfirm
         return new KonfirmasiViewHolder(view);
     }
 
+    public void deleteItem(int position){
+        this.list_jadwal.remove(position);
+        notifyItemRemoved(position);
+        notifyItemRangeChanged(position, list_jadwal.size());
+    }
+
     @Override
     public void onBindViewHolder(@NonNull KonfirmasiViewHolder holder, int position) {
+        final JadwalDokter data_jadwal = list_jadwal.get(position);
+
         holder.tv_hari.setText(list_jadwal.get(position).getTanggal());
         holder.tv_jam.setText(list_jadwal.get(position).getJam());
         holder.tv_matkul.setText(list_jadwal.get(position).getMataKuliah());
         holder.tv_ruangKelas.setText(list_jadwal.get(position).getRuangKelas());
+
         if (list_jadwal.get(position).getStatus() == 0){
             holder.tv_status.setText("PENDING");
         }
         holder.tv_nama_blok.setText(list_jadwal.get(position).getNamaBlok());
+
+        holder.btn_konfirmasi.setOnClickListener(v -> {
+            clickListener.onKonfrimasiClick(data_jadwal, position);
+            deleteItem(holder.getAdapterPosition());
+        });
+
+        holder.btn_tolak.setOnClickListener(v -> {
+            clickListener.onTolakClick(data_jadwal, position);
+            deleteItem(holder.getAdapterPosition());
+        });
     }
 
     @Override
@@ -60,7 +78,6 @@ public class AdapterKonfirmasiJadwal extends RecyclerView.Adapter<AdapterKonfirm
     public class KonfirmasiViewHolder extends RecyclerView.ViewHolder {
         TextView tv_hari, tv_jam, tv_matkul, tv_nama_blok, tv_ruangKelas, tv_status;
         Button btn_konfirmasi, btn_tolak;
-        JadwalDokter jadwal;
 
         public KonfirmasiViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -73,14 +90,6 @@ public class AdapterKonfirmasiJadwal extends RecyclerView.Adapter<AdapterKonfirm
             btn_tolak = itemView.findViewById(R.id.btn_tolak_jadwal);
             tv_status = itemView.findViewById(R.id.tv_status_dosen);
             tv_nama_blok = itemView.findViewById(R.id.tv_nama_blok);
-
-            btn_tolak.setOnClickListener(v -> {
-                clickListener.onTolakClick(jadwal, getAdapterPosition());
-            });
-            btn_konfirmasi.setOnClickListener(v -> {
-                clickListener.onKonfrimasiClick(jadwal, getAdapterPosition());
-            });
-
         }
     }
 

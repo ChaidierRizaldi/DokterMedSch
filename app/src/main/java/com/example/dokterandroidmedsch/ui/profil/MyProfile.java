@@ -9,7 +9,7 @@ import android.widget.ImageButton;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.dokterandroidmedsch.R;
-import com.example.dokterandroidmedsch.ui.Dashboard;
+import com.example.dokterandroidmedsch.ui.menu.Dashboard;
 
 public class MyProfile extends AppCompatActivity {
 

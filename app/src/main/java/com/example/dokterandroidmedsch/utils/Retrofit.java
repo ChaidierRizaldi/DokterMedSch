@@ -5,7 +5,7 @@ import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class Retrofit {
-    final static String BASE_URL ="http://192.168.1.7:3000/";
+    final static String BASE_URL ="http://192.168.1.3:3000/";
     public static retrofit2.Retrofit getRetrofit(){
         HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor();
         httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);

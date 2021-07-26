@@ -19,7 +19,7 @@ import androidx.viewpager.widget.ViewPager;
 import com.example.dokterandroidmedsch.R;
 import com.example.dokterandroidmedsch.model.get.ResponseLogin;
 import com.example.dokterandroidmedsch.model.post.RequestLogin;
-import com.example.dokterandroidmedsch.ui.Dashboard;
+import com.example.dokterandroidmedsch.ui.menu.Dashboard;
 import com.example.dokterandroidmedsch.utils.Retrofit;
 import com.example.dokterandroidmedsch.utils.SharedPreferences;
 
@@ -34,9 +34,7 @@ public class LoginTabFragment extends Fragment {
 
     TextView email, pass;
     String email_value, pass_value;
-    TextView forgetPass;
     Button login;
-    ImageView imageView;
     float v = 0;
 
     SharedPreferences sp_helper;
@@ -48,27 +46,22 @@ public class LoginTabFragment extends Fragment {
 
         email = root.findViewById(R.id.email_login);
         pass = root.findViewById(R.id.password_login);
-        forgetPass = root.findViewById(R.id.forget_Pass);
         login = root.findViewById(R.id.btn_login);
-        imageView = root.findViewById(R.id.imageLogin);
 
-        forgetPass.setTranslationX(800);
+
+//        email.setTranslationX(800);
+//        pass.setTranslationX(800);
         login.setTranslationX(800);
-        imageView.setTranslationX(800);
 
         sp_helper = new SharedPreferences(LoginTabFragment.this.requireContext());
 
         email.setAlpha(v);
         pass.setAlpha(v);
-        forgetPass.setAlpha(v);
         login.setAlpha(v);
-        imageView.setAlpha(v);
 
         email.animate().translationX(0).alpha(1).setDuration(800).setStartDelay(300).start();
         pass.animate().translationX(0).alpha(1).setDuration(800).setStartDelay(500).start();
-        forgetPass.animate().translationX(0).alpha(1).setDuration(800).setStartDelay(500).start();
         login.animate().translationX(0).alpha(1).setDuration(800).setStartDelay(700).start();
-        imageView.animate().translationX(0).alpha(1).setDuration(800).setStartDelay(900).start();
 
         login.setOnClickListener(v -> {
 

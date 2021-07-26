@@ -13,7 +13,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 
-import com.example.dokterandroidmedsch.ui.Dashboard;
+import com.example.dokterandroidmedsch.ui.menu.Dashboard;
 import com.example.dokterandroidmedsch.ui.login.LoginActivity;
 import com.example.dokterandroidmedsch.utils.SharedPreferences;
 

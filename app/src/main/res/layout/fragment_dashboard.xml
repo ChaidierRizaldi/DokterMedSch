@@ -1,0 +1,48 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="4"
+    android:background="#EBF6FF"
+    android:orientation="vertical"
+    tools:context=".ui.menu.FragmentDashboard">
+
+    <ImageView
+        android:layout_width="136dp"
+        android:layout_height="0dp"
+        android:layout_weight="0.7"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center"
+        android:src="@drawable/logoskripsi" />
+
+    <ImageButton
+        android:id="@+id/btn_jadwal_kuliah"
+        android:layout_width="195dp"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_marginTop="25dp"
+        android:layout_gravity="center"
+        android:background="#0000ffff"
+        android:src="@drawable/btn_jadwal" />
+
+    <ImageButton
+        android:id="@+id/btn_konfirmasi_jadwal"
+        android:layout_width="195dp"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_gravity="center"
+        android:background="#0000ffff"
+        android:clickable="true"
+        android:src="@drawable/btn_konfirmasi" />
+
+    <ImageButton
+        android:id="@+id/btn_exit_apps"
+        android:layout_width="195dp"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_gravity="center"
+        android:background="#0000ffff"
+        android:clickable="true"
+        android:src="@drawable/btn_keluar" />
+
+</LinearLayout>
